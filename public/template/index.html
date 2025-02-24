@@ -1,943 +1,1175 @@
-<!DOCTYPE html>
-<html id="previewPage" lang="en">
+<!doctype html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Affan - PWA Mobile HTML Template">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-  <meta name="theme-color" content="#0134d4">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <!-- Title -->
-  <title>Affan - PWA Mobile HTML Template</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="img/core-img/favicon.ico">
-  <link rel="apple-touch-icon" href="img/icons/icon-96x96.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="img/icons/icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="img/icons/icon-167x167.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/icons/icon-180x180.png">
-
-  <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="manifest.json">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>Finapp</title>
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords"
+        content="bootstrap, wallet, banking, fintech mobile template, cordova, phonegap, mobile, html, responsive" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon/192x192.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="manifest" href="__manifest.json">
 </head>
 
 <body>
-  <!-- Dark mode switching -->
-  <div class="dark-mode-switching">
-    <div class="d-flex w-100 h-100 align-items-center justify-content-center">
-      <div class="dark-mode-text text-center">
-        <i class="bi bi-moon"></i>
-        <p class="mb-0">Switching to dark mode</p>
-      </div>
-      <div class="light-mode-text text-center">
-        <i class="bi bi-brightness-high"></i>
-        <p class="mb-0">Switching to light mode</p>
-      </div>
+
+    <!-- loader -->
+    <div id="loader">
+        <img src="assets/img/loading-icon.png" alt="icon" class="loading-icon">
     </div>
-  </div>
+    <!-- * loader -->
 
-  <!-- RTL mode switching -->
-  <div class="rtl-mode-switching">
-    <div class="d-flex w-100 h-100 align-items-center justify-content-center">
-      <div class="rtl-mode-text text-center">
-        <i class="bi bi-text-right"></i>
-        <p class="mb-0">Switching to RTL mode</p>
-      </div>
-      <div class="ltr-mode-text text-center">
-        <i class="bi bi-text-left"></i>
-        <p class="mb-0">Switching to default mode</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Setting Popup Overlay -->
-  <div id="setting-popup-overlay"></div>
-
-  <!-- Setting Popup Card -->
-  <div class="card setting-popup-card shadow-lg" id="settingCard">
-    <div class="card-body">
-      <div class="container">
-        <div class="setting-heading d-flex align-items-center justify-content-between mb-3">
-          <p class="mb-0">Settings</p>
-          <div class="btn-close" id="settingCardClose"></div>
-        </div>
-
-        <div class="single-setting-panel">
-          <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="availabilityStatus" checked>
-            <label class="form-check-label" for="availabilityStatus">Availability status</label>
-          </div>
-        </div>
-
-        <div class="single-setting-panel">
-          <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="sendMeNotifications" checked>
-            <label class="form-check-label" for="sendMeNotifications">Send me notifications</label>
-          </div>
-        </div>
-
-        <div class="single-setting-panel">
-          <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="darkSwitch">
-            <label class="form-check-label" for="darkSwitch">Dark mode</label>
-          </div>
-        </div>
-
-        <div class="single-setting-panel">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="rtlSwitch">
-            <label class="form-check-label" for="rtlSwitch">RTL mode</label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Button -->
-  <button class="btn btn-warning btn-others-items-preview shadow" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#othersTemplate" aria-controls="othersTemplate">
-    View Others Templates
-  </button>
-
-  <!-- Offcanvas -->
-  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="othersTemplate"
-    aria-labelledby="othersTemplateLabel">
-    <div class="offcanvas-header">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <!-- Single Item -->
-      <div class="others-items-preview shadow-sm mb-3">
-        <div class="alert alert-info mb-0" role="alert">
-          <img class="mb-2" src="img/demo-img/suha.png" alt="">
-          <h6>Suha - PWA Ecommerce Mobile</h6>
-          <a class="btn btn-success btn-sm w-100 rounded-pill" target="_blank"
-            href="https://themeforest.net/item/suha-multipurpose-ecommerce-mobile-template/25294162">View Demo <i
-              class="ms-1 bi bi-box-arrow-up-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Single Item -->
-      <div class="others-items-preview shadow-sm mb-3">
-        <div class="alert alert-info mb-0" role="alert">
-          <img class="mb-2" src="img/demo-img/newsten.png" alt="">
-          <h6>Newsten - Blog & Magazine Mobile</h6>
-          <a class="btn btn-success btn-sm w-100 rounded-pill" target="_blank"
-            href="https://themeforest.net/item/newsten-blog-magazine-mobile-html-template/26265024">View Demo <i
-              class="ms-1 bi bi-box-arrow-up-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Single Item -->
-      <div class="others-items-preview shadow-sm mb-3">
-        <div class="alert alert-info mb-0" role="alert">
-          <img class="mb-2" src="img/demo-img/saasbox.png" alt="">
-          <h6>Saasbox - Multipurpose HTML Template</h6>
-          <a class="btn btn-success btn-sm w-100 rounded-pill" target="_blank"
-            href="https://themeforest.net/item/saasbox-multipurpose-html-template-for-saas/25607146">View Demo <i
-              class="ms-1 bi bi-box-arrow-up-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Single Item -->
-      <div class="others-items-preview shadow-sm">
-        <div class="alert alert-info mb-0" role="alert">
-          <img class="mb-2" src="img/demo-img/funto.png" alt="">
-          <h6>Funto - HTML NFT Marketplace</h6>
-          <a class="btn btn-success btn-sm w-100 rounded-pill" target="_blank"
-            href="https://themeforest.net/item/funto-html-nft-marketplace/35740238">View Demo <i
-              class="ms-1 bi bi-box-arrow-up-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="preview-iframe-wrapper">
-    <!-- Header Area -->
-    <div class="demo-header-wrapper">
-      <div class="container demo-container">
-        <!-- Header Content -->
-        <div
-          class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
-          <!-- Logo Wrapper -->
-          <div class="logo-wrapper">
-            <a href="home.html">
-              <img src="img/core-img/logo.png" alt="">
+    <!-- App Header -->
+    <div class="appHeader bg-primary text-light">
+        <div class="left">
+            <a href="#" class="headerButton" data-bs-toggle="modal" data-bs-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
             </a>
-          </div>
-
-          <!-- Settings -->
-          <div class="setting-wrapper">
-            <div class="setting-trigger-btn" id="settingTriggerBtn">
-              <i class="bi bi-gear"></i>
-              <span></span>
-            </div>
-          </div>
         </div>
-      </div>
+        <div class="pageTitle">
+            <img src="assets/img/logo.png" alt="logo" class="logo">
+        </div>
+        <div class="right">
+            <a href="app-notifications.html" class="headerButton">
+                <ion-icon class="icon" name="notifications-outline"></ion-icon>
+                <span class="badge badge-danger">4</span>
+            </a>
+            <a href="app-settings.html" class="headerButton">
+                <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged w32">
+                <span class="badge badge-danger">6</span>
+            </a>
+        </div>
     </div>
+    <!-- * App Header -->
 
-    <!-- Preview Hero Area -->
-    <div class="preview-hero-area">
-      <span class="big-shadow-text">Affan</span>
-      <div class="container demo-container direction-rtl">
-        <div class="row g-2 align-items-center justify-content-between">
-          <div class="col-12 col-lg-3">
-            <h6 class="version-number bg-white shadow-sm border d-inline-block px-3 py-2 rounded-pill mb-3 lh-1">Current
-              version - v1.7.0</h6>
-            <h2 class="demo-title mb-3"><span>Affan </span> - PWA Mobile HTML Template</h2>
 
-            <ul class="demo-desc ps-0 mb-5">
-              <li><i class="bi bi-check-lg"></i> PWA Ready</li>
-              <li><i class="bi bi-check-lg"></i> Vanilla JavaScript</li>
-              <li><i class="bi bi-check-lg"></i> Bootstrap 5.3.3</li>
-              <li><i class="bi bi-check-lg"></i> Creative Design</li>
-              <li><i class="bi bi-check-lg"></i> Dark Mode</li>
-              <li><i class="bi bi-check-lg"></i> Right to Left (RTL)</li>
-              <li><i class="bi bi-check-lg"></i> Easy & Professional Code</li>
-            </ul>
+    <!-- App Capsule -->
+    <div id="appCapsule">
 
-            <div class="promotionVideo" id="promotionVideo">
-              <a data-autoplay="true" data-vbtype="video" class="btn btn-danger btn-lg promo-video rounded-pill"
-                href="https://www.youtube.com/watch?v=-D6QFpH7zCA" data-maxwidth="680px">Watch promo video</a>
+        <!-- Wallet Card -->
+        <div class="section wallet-card-section pt-1">
+            <div class="wallet-card">
+                <!-- Balance -->
+                <div class="balance">
+                    <div class="left">
+                        <span class="title">Total Balance</span>
+                        <h1 class="total">$ 2,562.50</h1>
+                    </div>
+                    <div class="right">
+                        <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#depositActionSheet">
+                            <ion-icon name="add-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- * Balance -->
+                <!-- Wallet Footer -->
+                <div class="wallet-footer">
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#withdrawActionSheet">
+                            <div class="icon-wrapper bg-danger">
+                                <ion-icon name="arrow-down-outline"></ion-icon>
+                            </div>
+                            <strong>Withdraw</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#sendActionSheet">
+                            <div class="icon-wrapper">
+                                <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </div>
+                            <strong>Send</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="app-cards.html">
+                            <div class="icon-wrapper bg-success">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            <strong>Cards</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exchangeActionSheet">
+                            <div class="icon-wrapper bg-warning">
+                                <ion-icon name="swap-vertical"></ion-icon>
+                            </div>
+                            <strong>Exchange</strong>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- * Wallet Footer -->
             </div>
-          </div>
+        </div>
+        <!-- Wallet Card -->
 
-          <div class="col-12 col-lg-5">
-            <div class="text-center">
-              <iframe class="shadow-lg" src="hero-blocks.html"></iframe>
+        <!-- Deposit Action Sheet -->
+        <div class="modal fade action-sheet" id="depositActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Balance</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form>
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account1">From</label>
+                                        <select class="form-control custom-select" id="account1">
+                                            <option value="0">Savings (*** 5019)</option>
+                                            <option value="1">Investment (*** 6212)</option>
+                                            <option value="2">Mortgage (*** 5021)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <label class="label">Enter Amount</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addona1">$</span>
+                                        <input type="text" class="form-control" placeholder="Enter an amount"
+                                            value="100">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group basic">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-bs-dismiss="modal">Deposit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
+        <!-- * Deposit Action Sheet -->
 
-          <div class="col-12 col-lg-3">
-            <div class="text-lg-end">
-              <!-- Mobile Live Preview -->
-              <div class="live-preview-btn mb-3">
-                <a class="btn btn-primary btn-lg d-lg-none mb-5 rounded-pill" href="hero-blocks.html" target="_blank">
-                  Click the button to live preview
+        <!-- Withdraw Action Sheet -->
+        <div class="modal fade action-sheet" id="withdrawActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Withdraw Money</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form>
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account2d">From</label>
+                                        <select class="form-control custom-select" id="account2d">
+                                            <option value="0">Savings (*** 5019)</option>
+                                            <option value="1">Investment (*** 6212)</option>
+                                            <option value="2">Mortgage (*** 5021)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="text11d">To</label>
+                                        <input type="email" class="form-control" id="text11d" placeholder="Enter IBAN">
+                                        <i class="clear-input">
+                                            <ion-icon name="close-circle"></ion-icon>
+                                        </i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <label class="label">Enter Amount</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addonb1">$</span>
+                                        <input type="text" class="form-control" placeholder="Enter an amount"
+                                            value="100">
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-bs-dismiss="modal">Withdraw</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Withdraw Action Sheet -->
+
+        <!-- Send Action Sheet -->
+        <div class="modal fade action-sheet" id="sendActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Send Money</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form>
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="account2">From</label>
+                                        <select class="form-control custom-select" id="account2">
+                                            <option value="0">Savings (*** 5019)</option>
+                                            <option value="1">Investment (*** 6212)</option>
+                                            <option value="2">Mortgage (*** 5021)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="text11">To</label>
+                                        <input type="email" class="form-control" id="text11"
+                                            placeholder="Enter bank ID">
+                                        <i class="clear-input">
+                                            <ion-icon name="close-circle"></ion-icon>
+                                        </i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <label class="label">Enter Amount</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addon1">$</span>
+                                        <input type="text" class="form-control" placeholder="Enter an amount"
+                                            value="100">
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-bs-dismiss="modal">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Send Action Sheet -->
+
+        <!-- Exchange Action Sheet -->
+        <div class="modal fade action-sheet" id="exchangeActionSheet" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Exchange Money</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group basic">
+                                            <div class="input-wrapper">
+                                                <label class="label" for="currency1">From</label>
+                                                <select class="form-control custom-select" id="currency1">
+                                                    <option value="1">EUR</option>
+                                                    <option value="2">USD</option>
+                                                    <option value="3">AUD</option>
+                                                    <option value="4">CAD</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group basic">
+                                            <div class="input-wrapper">
+                                                <label class="label" for="currency2">To</label>
+                                                <select class="form-control custom-select" id="currency2">
+                                                    <option value="1">USD</option>
+                                                    <option value="1">EUR</option>
+                                                    <option value="2">AUD</option>
+                                                    <option value="3">CAD</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic">
+                                    <label class="label">Enter Amount</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="basic-addon2">$</span>
+                                        <input type="text" class="form-control" placeholder="Enter an amount"
+                                            value="100">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group basic">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-bs-dismiss="modal">Exchange</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Exchange Action Sheet -->
+
+        <!-- Stats -->
+        <div class="section">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Income</div>
+                        <div class="value text-success">$ 552.95</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Expenses</div>
+                        <div class="value text-danger">$ 86.45</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Total Bills</div>
+                        <div class="value">$ 53.25</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Savings</div>
+                        <div class="value">$ 120.99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Stats -->
+
+        <!-- Transactions -->
+        <div class="section mt-4">
+            <div class="section-heading">
+                <h2 class="title">Transactions</h2>
+                <a href="app-transactions.html" class="link">View All</a>
+            </div>
+            <div class="transactions">
+                <!-- item -->
+                <a href="app-transaction-detail.html" class="item">
+                    <div class="detail">
+                        <img src="assets/img/sample/brand/1.jpg" alt="img" class="image-block imaged w48">
+                        <div>
+                            <strong>Amazon</strong>
+                            <p>Shopping</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="price text-danger"> - $ 150</div>
+                    </div>
                 </a>
-              </div>
-
-              <!-- QR Code -->
-              <div class="qr-code-wrapper shadow border">
-                <img src="img/demo-img/qr-code.png" alt="">
-                <h6 class="mb-0">Scan this QR code to view <br> on your mobile device.</h6>
-              </div>
+                <!-- * item -->
+                <!-- item -->
+                <a href="app-transaction-detail.html" class="item">
+                    <div class="detail">
+                        <img src="assets/img/sample/brand/2.jpg" alt="img" class="image-block imaged w48">
+                        <div>
+                            <strong>Apple</strong>
+                            <p>Appstore Purchase</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="price text-danger">- $ 29</div>
+                    </div>
+                </a>
+                <!-- * item -->
+                <!-- item -->
+                <a href="app-transaction-detail.html" class="item">
+                    <div class="detail">
+                        <img src="assets/img/sample/avatar/avatar3.jpg" alt="img" class="image-block imaged w48">
+                        <div>
+                            <strong>Alex Ljung</strong>
+                            <p>Transfer</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="price">+ $ 1,000</div>
+                    </div>
+                </a>
+                <!-- * item -->
+                <!-- item -->
+                <a href="app-transaction-detail.html" class="item">
+                    <div class="detail">
+                        <img src="assets/img/sample/avatar/avatar4.jpg" alt="img" class="image-block imaged w48">
+                        <div>
+                            <strong>Beatriz Brito</strong>
+                            <p>Transfer</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="price text-danger">- $ 186</div>
+                    </div>
+                </a>
+                <!-- * item -->
             </div>
-          </div>
         </div>
-      </div>
+        <!-- * Transactions -->
+
+        <!-- my cards -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">My Cards</h2>
+                <a href="app-cards.html" class="link">View All</a>
+            </div>
+
+            <!-- carousel single -->
+            <div class="carousel-single splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-primary">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-dark">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-secondary">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel single -->
+
+        </div>
+        <!-- * my cards -->
+
+        <!-- Send Money -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">Send Money</h2>
+                <a href="#" class="link">Add New</a>
+            </div>
+            <!-- carousel small -->
+            <div class="carousel-small splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar2.jpg" alt="img" class="imaged w-100">
+                                    <strong>Jurrien</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar3.jpg" alt="img" class="imaged w-100">
+                                    <strong>Elwin</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar4.jpg" alt="img" class="imaged w-100">
+                                    <strong>Alma</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar5.jpg" alt="img" class="imaged w-100">
+                                    <strong>Justine</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar6.jpg" alt="img" class="imaged w-100">
+                                    <strong>Maria</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar7.jpg" alt="img" class="imaged w-100">
+                                    <strong>Pamela</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar8.jpg" alt="img" class="imaged w-100">
+                                    <strong>Neville</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar9.jpg" alt="img" class="imaged w-100">
+                                    <strong>Alex</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="assets/img/sample/avatar/avatar10.jpg" alt="img" class="imaged w-100">
+                                    <strong>Stina</strong>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel small -->
+        </div>
+        <!-- * Send Money -->
+
+        <!-- Monthly Bills -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">Monthly Bills</h2>
+                <a href="app-bills.html" class="link">View All</a>
+            </div>
+            <!-- carousel multiple -->
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <img src="assets/img/sample/brand/1.jpg" alt="img" class="image-block imaged w48">
+                                </div>
+                                <div class="price">$ 14</div>
+                                <p>Prime Monthly Subscription</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <img src="assets/img/sample/brand/2.jpg" alt="img" class="image-block imaged w48">
+                                </div>
+                                <div class="price">$ 9</div>
+                                <p>Music Monthly Subscription</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <div class="iconbox bg-danger">
+                                        <ion-icon name="medkit-outline"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="price">$ 299</div>
+                                <p>Monthly Health Insurance</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <div class="iconbox">
+                                        <ion-icon name="card-outline"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="price">$ 962</div>
+                                <p>Credit Card Statement
+                                </p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel multiple -->
+        </div>
+        <!-- * Monthly Bills -->
+
+
+        <!-- Saving Goals -->
+        <div class="section mt-4">
+            <div class="section-heading">
+                <h2 class="title">Saving Goals</h2>
+                <a href="app-savings.html" class="link">View All</a>
+            </div>
+            <div class="goals">
+                <!-- item -->
+                <div class="item">
+                    <div class="in">
+                        <div>
+                            <h4>Gaming Console</h4>
+                            <p>Gaming</p>
+                        </div>
+                        <div class="price">$ 499</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85"
+                            aria-valuemin="0" aria-valuemax="100">85%</div>
+                    </div>
+                </div>
+                <!-- * item -->
+                <!-- item -->
+                <div class="item">
+                    <div class="in">
+                        <div>
+                            <h4>New House</h4>
+                            <p>Living</p>
+                        </div>
+                        <div class="price">$ 100,000</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="55"
+                            aria-valuemin="0" aria-valuemax="100">55%</div>
+                    </div>
+                </div>
+                <!-- * item -->
+                <!-- item -->
+                <div class="item">
+                    <div class="in">
+                        <div>
+                            <h4>Sport Car</h4>
+                            <p>Lifestyle</p>
+                        </div>
+                        <div class="price">$ 42,500</div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 15%;" aria-valuenow="15"
+                            aria-valuemin="0" aria-valuemax="100">15%</div>
+                    </div>
+                </div>
+                <!-- * item -->
+            </div>
+        </div>
+        <!-- * Saving Goals -->
+
+
+        <!-- News -->
+        <div class="section full mt-4 mb-3">
+            <div class="section-heading padding">
+                <h2 class="title">Lastest News</h2>
+                <a href="app-blog.html" class="link">View All</a>
+            </div>
+
+            <!-- carousel multiple -->
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="assets/img/sample/photo/1.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">What will be the value of bitcoin in the next...</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="assets/img/sample/photo/2.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">Rules you need to know in business</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="assets/img/sample/photo/3.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">10 easy ways to save your money</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="assets/img/sample/photo/4.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">Follow the financial agenda with...</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel multiple -->
+
+        </div>
+        <!-- * News -->
+
+
+        <!-- app footer -->
+        <div class="appFooter">
+            <div class="footer-title">
+                Copyright © Finapp 2021. All Rights Reserved.
+            </div>
+            Bootstrap 5 based mobile template.
+        </div>
+        <!-- * app footer -->
+
     </div>
+    <!-- * App Capsule -->
 
-    <!-- Features Area -->
-    <div class="features-area">
-      <div class="container demo-container direction-rtl">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-7 col-xl-6">
-            <div class="section-heading text-center">
-              <h2 class="display-6 mb-3">Key Features</h2>
-              <p class="mb-0">Affan is a modern and latest technology-based mobile template. It's come with
-                <span class="special-text">
-                  Creative Design, Vanilla JavaScript, Bootstrap 5, PWA Ready, Dark Mode &amp;
-                  Right to Left (RTL)
-                </span> features.
-              </p>
+
+    <!-- App Bottom Menu -->
+    <div class="appBottomMenu">
+        <a href="index.html" class="item active">
+            <div class="col">
+                <ion-icon name="pie-chart-outline"></ion-icon>
+                <strong>Overview</strong>
             </div>
-          </div>
-        </div>
-
-        <div class="row g-3 justify-content-center">
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/pwa.png" alt="">
-                <h6 class="mb-0">PWA Ready</h6>
-              </div>
+        </a>
+        <a href="app-pages.html" class="item">
+            <div class="col">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <strong>Pages</strong>
             </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/bootstrap.png" alt="">
-                <h6 class="mb-0">Bootstrap 5</h6>
-              </div>
+        </a>
+        <a href="app-components.html" class="item">
+            <div class="col">
+                <ion-icon name="apps-outline"></ion-icon>
+                <strong>Components</strong>
             </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/js.png" alt="">
-                <h6 class="mb-0">Vanilla JS</h6>
-              </div>
+        </a>
+        <a href="app-cards.html" class="item">
+            <div class="col">
+                <ion-icon name="card-outline"></ion-icon>
+                <strong>My Cards</strong>
             </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/npm.png" alt="">
-                <h6 class="mb-0">npm</h6>
-              </div>
+        </a>
+        <a href="app-settings.html" class="item">
+            <div class="col">
+                <ion-icon name="settings-outline"></ion-icon>
+                <strong>Settings</strong>
             </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/gulp.png" alt="">
-                <h6 class="mb-0">Gulp 4</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/sass.png" alt="">
-                <h6 class="mb-0">SCSS</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/dark.png" alt="">
-                <h6 class="mb-0">Dark Mode</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/rtl.png" alt="">
-                <h6 class="mb-0">RTL Mode</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/star.png" alt="">
-                <h6 class="mb-0">Best Rated</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/code.png" alt="">
-                <h6 class="mb-0">Easy Code</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/html5.png" alt="">
-                <h6 class="mb-0">HTML5</h6>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="card active">
-              <div class="card-body text-center">
-                <img class="mb-4" src="img/demo-img/css.png" alt="">
-                <h6 class="mb-0">CSS3</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-100 d-block mb-5"></div>
-
-        <div class="row g-2 justify-content-center">
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="mb-0">220+ Elements</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Varieties Header Menu</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Varieties Footer Menu</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Left &amp; Right Sidebar Menu</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Alerts &amp; Toasts</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Automated Online/Offline Detection</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">220+ Reusable Elements</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">100+ Ready Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Varieties Form Elements</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Auto Complete Form</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Range Input Slider</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Accordion/FAQ</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Timeline</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Image Gallery</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">User Ratings</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Lots of Helper Elements</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Carousel</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Data Table</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Countdown &amp; Counterup</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Apex Charts</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Versatile Mobile Template</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Nicely Designed</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Coded with the Latest Technology</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Bug Free Code</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Cross Browser Support</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Notifications Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Language Page</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Password Strength Meter</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">OTP Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Shop Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">User Profile</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Coming Soon</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Authentication Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Unique Design</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Blog Pages</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Google Fonts</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Easy to Customize</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Clean &amp; 100% Validate Code</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Settings Page</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">404</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Fancy Button</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Vanilla JavaScript</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Comparison Table</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Offcanvas</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Tab</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card active">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Tiny Slider</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Fallback Page</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-1">
-                <div class="d-flex align-items-center">
-                  <i class="h4 lh-1 mb-0 bi bi-check text-primary"></i>
-                  <h6 class="ms-1 mb-0">Fancy UI Card</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
+        </a>
     </div>
+    <!-- * App Bottom Menu -->
 
-    <!-- Footer Area -->
-    <div class="preview-footer-area py-4">
-      <div class="container demo-container direction-rtl h-100 d-flex align-items-center justify-content-between">
-        <p class="mb-0"><span id="copyrightYear"></span> &copy; Made by Designing World</p>
-        <a class="btn btn-info" href="https://themeforest.net/item/affan-pwa-mobile-html-template/29715548"
-          target="_blank">Purchase Now</a>
-      </div>
+    <!-- App Sidebar -->
+    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <!-- profile box -->
+                    <div class="profileBox pt-2 pb-2">
+                        <div class="image-wrapper">
+                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged  w36">
+                        </div>
+                        <div class="in">
+                            <strong>Sebastian Doe</strong>
+                            <div class="text-muted">4029209</div>
+                        </div>
+                        <a href="#" class="btn btn-link btn-icon sidebar-close" data-bs-dismiss="modal">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </a>
+                    </div>
+                    <!-- * profile box -->
+                    <!-- balance -->
+                    <div class="sidebar-balance">
+                        <div class="listview-title">Balance</div>
+                        <div class="in">
+                            <h1 class="amount">$ 2,562.50</h1>
+                        </div>
+                    </div>
+                    <!-- * balance -->
+
+                    <!-- action group -->
+                    <div class="action-group">
+                        <a href="index.html" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                </div>
+                                Deposit
+                            </div>
+                        </a>
+                        <a href="index.html" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="arrow-down-outline"></ion-icon>
+                                </div>
+                                Withdraw
+                            </div>
+                        </a>
+                        <a href="index.html" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                                </div>
+                                Send
+                            </div>
+                        </a>
+                        <a href="app-cards.html" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                My Cards
+                            </div>
+                        </a>
+                    </div>
+                    <!-- * action group -->
+
+                    <!-- menu -->
+                    <div class="listview-title mt-1">Menu</div>
+                    <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="index.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="pie-chart-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Overview
+                                    <span class="badge badge-primary">10</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="app-pages.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Pages
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="app-components.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="apps-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Components
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="app-cards.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    My Cards
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- * menu -->
+
+                    <!-- others -->
+                    <div class="listview-title mt-1">Others</div>
+                    <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="app-settings.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Settings
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="component-messages.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="chatbubble-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Support
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="app-login.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Log out
+                                </div>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <!-- * others -->
+
+                    <!-- send money -->
+                    <div class="listview-title mt-1">Send Money</div>
+                    <ul class="listview image-listview flush transparent no-line">
+                        <li>
+                            <a href="#" class="item">
+                                <img src="assets/img/sample/avatar/avatar2.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Artem Sazonov</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <img src="assets/img/sample/avatar/avatar4.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Sophie Asveld</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <img src="assets/img/sample/avatar/avatar3.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Kobus van de Vegte</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- * send money -->
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <!-- * App Sidebar -->
 
-  <!-- All JavaScript Files -->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/slideToggle.min.js"></script>
-  <script src="js/internet-status.js"></script>
-  <script src="js/dark-rtl.js"></script>
-  <script src="js/active.js"></script>
-  <script src="js/pwa.js"></script>
-  <script src="js/venobox.min.js"></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      if (document.getElementById('promotionVideo')) {
-        window.addEventListener('load', function () {
-          try {
-            const venobox = new VenoBox({
-              selector: '.promo-video',
-              popup: true,
-              overlayColor: 'rgba(15,7,15,0.75)',
-              spinner: 'pulse',
-              navSpeed: 400
-            });
-          } catch (e) {
-            console.error('Error initializing VenoBox', e);
-          }
-        });
-      }
-    });
-  </script>
+
+    <!-- iOS Add to Home Action Sheet -->
+    <div class="modal inset fade action-sheet ios-add-to-home" id="ios-add-to-home-screen" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add to Home Screen</h5>
+                    <a href="#" class="close-button" data-bs-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content text-center">
+                        <div class="mb-1"><img src="assets/img/icon/192x192.png" alt="image" class="imaged w64 mb-2">
+                        </div>
+                        <div>
+                            Install <strong>Finapp</strong> on your iPhone's home screen.
+                        </div>
+                        <div>
+                            Tap <ion-icon name="share-outline"></ion-icon> and Add to homescreen.
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-block" data-bs-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * iOS Add to Home Action Sheet -->
+
+
+    <!-- Android Add to Home Action Sheet -->
+    <div class="modal inset fade action-sheet android-add-to-home" id="android-add-to-home-screen" tabindex="-1"
+        role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add to Home Screen</h5>
+                    <a href="#" class="close-button" data-bs-dismiss="modal">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content text-center">
+                        <div class="mb-1">
+                            <img src="assets/img/icon/192x192.png" alt="image" class="imaged w64 mb-2">
+                        </div>
+                        <div>
+                            Install <strong>Finapp</strong> on your Android's home screen.
+                        </div>
+                        <div>
+                            Tap <ion-icon name="ellipsis-vertical"></ion-icon> and Add to homescreen.
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-block" data-bs-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * Android Add to Home Action Sheet -->
+
+
+
+    <!-- ========= JS Files =========  -->
+    <!-- Bootstrap -->
+    <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="assets/js/plugins/splide/splide.min.js"></script>
+    <!-- Base Js File -->
+    <script src="assets/js/base.js"></script>
+
+    <script>
+        // Add to Home with 2 seconds delay.
+        AddtoHome("2000", "once");
+    </script>
 
 </body>
 

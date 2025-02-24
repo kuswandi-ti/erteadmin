@@ -19,6 +19,10 @@ class CreateTenantsTable extends Migration
             $table->string('id')->primary();
 
             // your custom columns may go here
+            $table->enum('status_membership', ['Trial', 'Member']);
+            $table->date('tgl_daftar')->default(date("Y-m-d H:i:s"));
+            $table->date('tgl_akhir_trial');
+            $table->date('tgl_akhir_member');
 
             $table->timestamps();
             $table->json('data')->nullable();

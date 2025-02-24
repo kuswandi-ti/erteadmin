@@ -64,12 +64,4 @@ class User extends Authenticatable
     {
         return $query->where('status_aktif', 0);
     }
-
-    public static function booted()
-    {
-        static::created(function ($user) {
-            $userTenant = Tenant::create(['id' => $user->domain]);
-            $userTenant->domains()->create(['domain' => $user->domain . '.' . config('common.central_domain')]);
-        });
-    }
 }

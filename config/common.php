@@ -16,6 +16,14 @@ return [
 
     'path_template' => env('PATH_TEMPLATE'),
 
+    'guard_name_admin' => env('GUARD_NAME_ADMIN'),
+    'guard_name_member' => env('GUARD_NAME_MEMBER'),
+    'guard_name_user' => env('GUARD_NAME_USER'),
+
+    'guard_text_admin' => env('GUARD_TEXT_ADMIN'),
+    'guard_text_member' => env('GUARD_TEXT_MEMBER'),
+    'guard_text_user' => env('GUARD_TEXT_USER'),
+
     'mail_mailer' => env('MAIL_MAILER'),
     'mail_host' => env('MAIL_HOST'),
     'mail_port' => env('MAIL_PORT'),

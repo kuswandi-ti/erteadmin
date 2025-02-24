@@ -4,12 +4,14 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\SettingSystem;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+// Role & Permission - Begin
 function canAccess(array $permissions)
 {
-    $permission = auth()->user()->hasAnyPermission($permissions);
-    $super_admin = auth()->user()->hasRole('Super Admin');
+    $permission = Auth::guard(getGuardNameLoggedUser())->user()->hasAnyPermission($permissions);
+    $super_admin = Auth::guard(getGuardNameLoggedUser())->user()->hasRole('Super Admin');
 
     if ($permission || $super_admin) {
         return true;
@@ -18,22 +20,92 @@ function canAccess(array $permissions)
     }
 }
 
-function getLoggedUserRole()
-{
-    $role = auth()->user()->getRoleNames();
-    return $role->first();
-}
-
 function checkPermission(string $permission)
 {
-    return auth()->user()->hasPermissionTo($permission);
+    return Auth::guard(getGuardNameLoggedUser())->user()->hasPermissionTo($permission);
+}
+
+function getArrayAdminPermission()
+{
+    return [
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_create', 'alias' => 'Membuat Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_delete', 'alias' => 'Hapus Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_index', 'alias' => 'Daftar Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_update', 'alias' => 'Perbarui Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_create', 'alias' => 'Membuat Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_delete', 'alias' => 'Hapus Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_index', 'alias' => 'Daftar Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_update', 'alias' => 'Perbarui Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_approve', 'alias' => 'Approve User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_create', 'alias' => 'Membuat User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_delete', 'alias' => 'Hapus User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_index', 'alias' => 'Daftar User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_reject', 'alias' => 'Tolak User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_restore', 'alias' => 'Pulihkan User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'user_update', 'alias' => 'Perbarui User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'setting_perusahaan', 'alias' => 'Pengaturan Info Perusahaan', 'group_name' => 'Pengaturan', 'menu_name' => 'Pengaturan'],
+    ];
+}
+// Role & Permission - End
+
+
+/* User - Begin */
+function getLoggedUserRole()
+{
+    $role = Auth::guard(getGuardNameLoggedUser())->user()->getRoleNames();
+    return $role->first();
 }
 
 function getLoggedUser()
 {
-    return Auth::user();
+    $user = Auth::guard(getGuardNameLoggedUser())->user();
+    return $user;
 }
 
+function getGuardNameLoggedUser(): ?string
+{
+    if (Auth::guard(getGuardNameAdmin())->check()) {
+        return getGuardNameAdmin();
+    } else if (Auth::guard(getGuardNameMember())->check()) {
+        return getGuardNameMember();
+    } else {
+        return getGuardNameUser();
+    }
+}
+
+function getGuardNameAdmin(): ?string
+{
+    return config('common.guard_name_admin');
+}
+
+function getGuardNameMember(): ?string
+{
+    return config('common.guard_name_member');
+}
+
+function getGuardNameUser(): ?string
+{
+    return config('common.guard_name_user');
+}
+
+function getGuardTextAdmin(): ?string
+{
+    return config('common.guard_text_admin');
+}
+
+function getGuardTextMember(): ?string
+{
+    return config('common.guard_text_member');
+}
+
+function getGuardTextUser(): ?string
+{
+    return config('common.guard_text_user');
+}
+/* User - End */
+
+
+/* Navigation - Begin */
 function setSidebarActive(array $routes): ?string
 {
     foreach ($routes as $route) {
@@ -55,7 +127,10 @@ function setSidebarOpen(array $routes): ?string
 
     return '';
 }
+/* Navigation - End */
 
+
+/* String Operation - Begin */
 function truncateString(string $text, int $limit = 45): ?string
 {
     return Str::limit($text, $limit, '...');
@@ -71,94 +146,42 @@ function capitalFirstLetter(string $text = null): ?string
     return $text != null ? Str::of($text)->ucfirst() : '';
 }
 
-function getArraySalesPermission()
+function left($text, $length)
 {
-    return [
-        ['guard_name' => 'web', 'name' => 'user approve', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'user create', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'user delete', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'user index', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'user restore', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'user update', 'group_name' => 'User Permission'],
-        ['guard_name' => 'web', 'name' => 'role create', 'group_name' => 'Role Permission'],
-        ['guard_name' => 'web', 'name' => 'role delete', 'group_name' => 'Role Permission'],
-        ['guard_name' => 'web', 'name' => 'role index', 'group_name' => 'Role Permission'],
-        ['guard_name' => 'web', 'name' => 'role update', 'group_name' => 'Role Permission'],
-        ['guard_name' => 'web', 'name' => 'permission create', 'group_name' => 'Permission Permission'],
-        ['guard_name' => 'web', 'name' => 'permission delete', 'group_name' => 'Permission Permission'],
-        ['guard_name' => 'web', 'name' => 'permission index', 'group_name' => 'Permission Permission'],
-        ['guard_name' => 'web', 'name' => 'permission update', 'group_name' => 'Permission Permission'],
-        ['guard_name' => 'web', 'name' => 'setting info perusahaan', 'group_name' => 'Setting System Permission'],
-        ['guard_name' => 'web', 'name' => 'setting lainnya', 'group_name' => 'Setting System Permission'],
-        ['guard_name' => 'web', 'name' => 'customer visit create', 'group_name' => 'Customer Visit Permission'],
-        ['guard_name' => 'web', 'name' => 'customer visit delete', 'group_name' => 'Customer Visit Permission'],
-        ['guard_name' => 'web', 'name' => 'customer visit index', 'group_name' => 'Customer Visit Permission'],
-        ['guard_name' => 'web', 'name' => 'customer visit restore', 'group_name' => 'Customer Visit Permission'],
-        ['guard_name' => 'web', 'name' => 'customer visit update', 'group_name' => 'Customer Visit Permission'],
-        ['guard_name' => 'web', 'name' => 'sales person create', 'group_name' => 'Sales Person Permission'],
-        ['guard_name' => 'web', 'name' => 'sales person delete', 'group_name' => 'Sales Person Permission'],
-        ['guard_name' => 'web', 'name' => 'sales person index', 'group_name' => 'Sales Person Permission'],
-        ['guard_name' => 'web', 'name' => 'sales person restore', 'group_name' => 'Sales Person Permission'],
-        ['guard_name' => 'web', 'name' => 'sales person update', 'group_name' => 'Sales Person Permission'],
-        ['guard_name' => 'web', 'name' => 'store create', 'group_name' => 'Store Permission'],
-        ['guard_name' => 'web', 'name' => 'store delete', 'group_name' => 'Store Permission'],
-        ['guard_name' => 'web', 'name' => 'store index', 'group_name' => 'Store Permission'],
-        ['guard_name' => 'web', 'name' => 'store restore', 'group_name' => 'Store Permission'],
-        ['guard_name' => 'web', 'name' => 'store update', 'group_name' => 'Store Permission'],
-        ['guard_name' => 'web', 'name' => 'dashboard gsa', 'group_name' => 'Dashboard Permission'],
-        ['guard_name' => 'web', 'name' => 'kota create', 'group_name' => 'Kota Permission'],
-        ['guard_name' => 'web', 'name' => 'kota delete', 'group_name' => 'Kota Permission'],
-        ['guard_name' => 'web', 'name' => 'kota index', 'group_name' => 'Kota Permission'],
-        ['guard_name' => 'web', 'name' => 'kota update', 'group_name' => 'Kota Permission'],
-        ['guard_name' => 'web', 'name' => 'brand create', 'group_name' => 'Brand Permission'],
-        ['guard_name' => 'web', 'name' => 'brand delete', 'group_name' => 'Brand Permission'],
-        ['guard_name' => 'web', 'name' => 'brand index', 'group_name' => 'Brand Permission'],
-        ['guard_name' => 'web', 'name' => 'brand update', 'group_name' => 'Brand Permission'],
-        ['guard_name' => 'web', 'name' => 'tipe barang create', 'group_name' => 'Tipe Barang Permission'],
-        ['guard_name' => 'web', 'name' => 'tipe barang delete', 'group_name' => 'Tipe Barang Permission'],
-        ['guard_name' => 'web', 'name' => 'tipe barang index', 'group_name' => 'Tipe Barang Permission'],
-        ['guard_name' => 'web', 'name' => 'tipe barang update', 'group_name' => 'Tipe Barang Permission'],
-        ['guard_name' => 'web', 'name' => 'range harga create', 'group_name' => 'Range Harga Permission'],
-        ['guard_name' => 'web', 'name' => 'range harga delete', 'group_name' => 'Range Harga Permission'],
-        ['guard_name' => 'web', 'name' => 'range harga index', 'group_name' => 'Range Harga Permission'],
-        ['guard_name' => 'web', 'name' => 'range harga update', 'group_name' => 'Range Harga Permission'],
-        ['guard_name' => 'web', 'name' => 'laporan penjualan per person', 'group_name' => 'Report Permission'],
-        ['guard_name' => 'web', 'name' => 'laporan penjualan per store', 'group_name' => 'Report Permission'],
-        ['guard_name' => 'web', 'name' => 'laporan penjualan all store', 'group_name' => 'Report Permission'],
-    ];
+    return substr($text, 0, $length);
 }
 
-function setStatusBadge($status)
+function right($text, $length)
+{
+    return substr($text, -$length);
+}
+/* String Operation - End */
+
+
+/* Badge - Begin */
+function setStatusAktifBadge($status)
 {
     return $status == 1 ? 'success' : 'danger';
 }
 
-function setStatusText($status)
+function setStatusAktifText($status)
 {
     return $status == 1 ? __('Aktif') : __('Tidak Aktif');
 }
 
-// function setParamBadge($param_text)
-// {
-//     switch ($param_text) {
-//         case "Lihat":
-//             return 'primary';
-//             break;
-//         case "Tanya":
-//             return 'warning';
-//             break;
-//         case "Coba":
-//             return 'danger';
-//             break;
-//         case "Beli":
-//             return 'success';
-//             break;
-//         default:
-//             echo 'primary';
-//     }
-
-//     return $status == 1 ? 'success' : 'danger';
-// }
+function setStatusMembershipBadge($param_text)
+{
+    switch ($param_text) {
+        case "Trial":
+            return 'warning';
+            break;
+        case "Member":
+            return 'success';
+            break;
+        default:
+            echo 'primary';
+    }
+}
 
 function setStatusBayarBadge($param_text)
 {
@@ -179,7 +202,10 @@ function setStatusBayarBadge($param_text)
             echo 'bg-primary';
     }
 }
+/* Badge - End */
 
+
+/* Database Operation - Begin */
 function saveDateTimeNow()
 {
     return Carbon::now()->addHour(7)->format('Y-m-d H:i:s');
@@ -195,11 +221,53 @@ function saveTimeNow()
     return Carbon::now()->addHour(7)->format('H:i:s');
 }
 
-function insertDateToTable($date)
+function saveInputDateToTable($date)
 {
     return date('Y-m-d', strtotime($date));
 }
 
+/**
+ * Create document number
+ *
+ * @param  string $kode_transaksi = Code of Transaction
+ * @param  int $bulan = Month of Transaction
+ * @param  int $tahun = Year of Transaction
+ * @param  int $nomor_terakhir = Current increment of document number transaction
+ * @return string
+ */
+function last_doc_no($kode_transaksi, $bulan, $tahun)
+{
+    $count = DB::table('counter')
+        ->where([['kode_transaksi', $kode_transaksi], ['bulan', intval($bulan)], ['tahun', $tahun]])
+        ->max('nomor_terakhir');
+    if ($count == 0) {
+        $current_no = 1;
+        DB::table('counter')->insert([
+            [
+                'kode_transaksi' => $kode_transaksi,
+                'bulan' => intval($bulan),
+                'tahun' => $tahun,
+                'nomor_terakhir' => $current_no,
+            ]
+        ]);
+    } else {
+        $current_no = $count + 1;
+        DB::table('counter')
+            ->where([['kode_transaksi', $kode_transaksi], ['bulan', intval($bulan)], ['tahun', $tahun]])
+            ->update(
+                ['nomor_terakhir' => $current_no]
+            );
+    }
+
+    return $current_no;
+
+    // Format Doc : XX-MMYY-XXXX
+    // return $kode_transaksi . '-' . right('0000' . $bulan, 2) . right($tahun, 2) . '-' . right('0000' . $current_no, 4);
+}
+/* Database Operation - End */
+
+
+/* Format Data - Begin */
 function formatDate($date = '')
 {
     if (!is_null($date) && isset($date)) {
@@ -249,40 +317,36 @@ function unformatAmount($str)
     $str = str_replace(".", "", $str);
     return (float) $str;
 }
+/* Format Data - End */
 
+
+/* Setting - Begin */
 function activePeriod(): ?String
 {
     $setting_system = SettingSystem::pluck('value', 'key')->toArray();
     return $setting_system['tahun_periode_aktif'];
 }
+/* Setting - End */
 
-function left($text, $length)
-{
-    return substr($text, 0, $length);
-}
 
-function right($text, $length)
-{
-    return substr($text, -$length);
-}
 
-function docNoStore(): ?String
-{
-    $setting_system = SettingSystem::pluck('value', 'key')->toArray();
-    return $setting_system['kode_dokumen_store'];
-}
+// function docNoStore(): ?String
+// {
+//     $setting_system = SettingSystem::pluck('value', 'key')->toArray();
+//     return $setting_system['kode_dokumen_store'];
+// }
 
-function docNoSalesPerson(): ?String
-{
-    $setting_system = SettingSystem::pluck('value', 'key')->toArray();
-    return $setting_system['kode_dokumen_sales_person'];
-}
+// function docNoSalesPerson(): ?String
+// {
+//     $setting_system = SettingSystem::pluck('value', 'key')->toArray();
+//     return $setting_system['kode_dokumen_sales_person'];
+// }
 
-function docNoCustomerVisit(): ?String
-{
-    $setting_system = SettingSystem::pluck('value', 'key')->toArray();
-    return $setting_system['kode_dokumen_customer_visit'];
-}
+// function docNoCustomerVisit(): ?String
+// {
+//     $setting_system = SettingSystem::pluck('value', 'key')->toArray();
+//     return $setting_system['kode_dokumen_customer_visit'];
+// }
 
 // function paramCustomerVisit($param): ?String
 // {
@@ -290,55 +354,16 @@ function docNoCustomerVisit(): ?String
 //     return $params[$param];
 // }
 
-function getSession($param): ?String
-{
-    $params = array(
-        Session::get('sess_id_sales_person'),
-        Session::get('sess_kode_sales'),
-        Session::get('sess_nama_sales'),
-        Session::get('sess_id_store'),
-        Session::get('sess_kode_store'),
-        Session::get('sess_nama_store'),
-        Session::get('sess_kota_store'),
-    );
-    return $params[$param];
-}
-
-/**
- * Create document number
- *
- * @param  string $kode_transaksi = Code of Transaction
- * @param  int $bulan = Month of Transaction
- * @param  int $tahun = Year of Transaction
- * @param  int $nomor_terakhir = Current increment of document number transaction
- * @return string
- */
-function last_doc_no($kode_transaksi, $bulan, $tahun)
-{
-    $count = DB::table('counter')
-        ->where([['kode_transaksi', $kode_transaksi], ['bulan', intval($bulan)], ['tahun', $tahun]])
-        ->max('nomor_terakhir');
-    if ($count == 0) {
-        $current_no = 1;
-        DB::table('counter')->insert([
-            [
-                'kode_transaksi' => $kode_transaksi,
-                'bulan' => intval($bulan),
-                'tahun' => $tahun,
-                'nomor_terakhir' => $current_no,
-            ]
-        ]);
-    } else {
-        $current_no = $count + 1;
-        DB::table('counter')
-            ->where([['kode_transaksi', $kode_transaksi], ['bulan', intval($bulan)], ['tahun', $tahun]])
-            ->update(
-                ['nomor_terakhir' => $current_no]
-            );
-    }
-
-    return $current_no;
-
-    // Format Doc : XX-MMYY-XXXX
-    // return $kode_transaksi . '-' . right('0000' . $bulan, 2) . right($tahun, 2) . '-' . right('0000' . $current_no, 4);
-}
+// function getSession($param): ?String
+// {
+//     $params = array(
+//         Session::get('sess_id_sales_person'),
+//         Session::get('sess_kode_sales'),
+//         Session::get('sess_nama_sales'),
+//         Session::get('sess_id_store'),
+//         Session::get('sess_kode_store'),
+//         Session::get('sess_nama_store'),
+//         Session::get('sess_kota_store'),
+//     );
+//     return $params[$param];
+// }

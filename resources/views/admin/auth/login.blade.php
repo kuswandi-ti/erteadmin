@@ -1,48 +1,62 @@
 @extends('layouts.auth')
 
 @section('page_title')
-    {{ __('Admin Login') }}
+    {{ __('Admin - Login') }}
 @endsection
 
 @section('content')
-    <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center">
-        <div class="custom-container">
-            <div class="text-center px-4">
-                <img class="login-intro-img" src="{{ url(config('common.path_template') . 'img/default/login.webp') }}"
-                    alt="">
-            </div>
+    <div class="section mt-2 text-center">
+        <img src="{{ url(config('common.path_template') . 'assets/img/default/login.webp') }}" alt="image" height="200"
+            width="200">
+    </div>
 
-            <!-- Register Form -->
-            <div class="register-form mt-4">
-                <h6 class="mb-3 text-center">{{ __('Log in') }}</h6>
+    <div class="section mt-2 text-center">
+        <h2>{{ __('Log in') }}</h2>
+    </div>
 
-                <x-web-alert-message />
+    <div class="section mt-2">
+        <x-web-alert-message />
+    </div>
 
-                <form method="POST" action="{{ route('admin.login.post') }}">
-                    @csrf
+    <div class="section mb-5 p-2">
+        <form method="POST" action="{{ route('admin.login.post') }}">
+            @csrf
 
-                    <div class="form-group">
-                        <input class="form-control" type="email" name="email" id="email" placeholder="Email">
-                    </div>
-
-                    <div class="form-group position-relative">
-                        <input class="form-control" type="password" name="password" id="psw-input" placeholder="Password">
-                        <div class="position-absolute" id="password-visibility">
-                            <i class="bi bi-eye"></i>
-                            <i class="bi bi-eye-slash"></i>
+            <div class="card">
+                <div class="card-body pb-1">
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="email">{{ __('E-mail') }}</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="{{ __('E-mail') }}">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary w-100" type="submit">{{ __('Log in') }}</button>
-                </form>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="password1">{{ __('Password') }}</label>
+                            <input type="password" class="form-control" name="password" id="password" autocomplete="off"
+                                placeholder="Password">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Login Meta -->
-            <div class="login-meta-data text-center">
-                <a class="stretched-link forgot-password d-block mt-3 mb-1"
-                    href="{{ route('admin.forgot_password') }}">{{ __('Lupa Password ?') }}</a>
+            <div class="text-center mt-2">
+                <div>
+                    <a href="{{ route('admin.forgot_password') }}">{{ __('Lupa Password ?') }}</a>
+                </div>
             </div>
-        </div>
+
+            <div class="form-button-group transparent">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">{{ __('Log in') }}</button>
+            </div>
+        </form>
     </div>
 @endsection

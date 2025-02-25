@@ -1,6 +1,6 @@
-<!-- Preloader -->
-<div id="preloader">
-    <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">{{ __('Loading...') }}</span>
-    </div>
+<!-- loader -->
+<div id="loader">
+    <img src="{{ url(config('common.path_template') . 'assets/img/loading-icon.png') }}" alt="icon"
+        class="loading-icon">
 </div>
+<!-- * loader -->

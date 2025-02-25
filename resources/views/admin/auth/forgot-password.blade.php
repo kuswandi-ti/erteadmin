@@ -1,36 +1,50 @@
 @extends('layouts.auth')
 
 @section('page_title')
-    {{ __('Admin Lupa Password') }}
+    {{ __('Admin - Lupa Password') }}
 @endsection
 
 @section('content')
-    <!-- Login Wrapper Area -->
-    <div class="login-wrapper d-flex align-items-center justify-content-center">
-        <div class="custom-container">
-            <div class="text-center px-4">
-                <img class="login-intro-img" src="{{ url(config('common.path_template') . 'img/default/login.webp') }}"
-                    alt="">
-            </div>
+    <div class="section mt-2 text-center">
+        <img src="{{ url(config('common.path_template') . 'assets/img/default/login.webp') }}" alt="image" height="200"
+            width="200">
+    </div>
 
-            <!-- Register Form -->
-            <div class="register-form mt-4">
-                <h6 class="mb-3 text-center">{{ __('Lupa Password') }}</h6>
+    <div class="section mt-2 text-center">
+        <h2>{{ __('Lupa Password') }}</h2>
+    </div>
 
-                <form action="home.html">
-                    <div class="form-group">
-                        <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+    <div class="section mb-5 p-2">
+        <form method="POST" action="{{ route('admin.login.post') }}">
+            @csrf
+
+            <div class="card">
+                <div class="card-body pb-1">
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="email">{{ __('E-mail') }}</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="{{ __('E-mail') }}">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
+                        </div>
                     </div>
-
-                    <button class="btn btn-primary w-100" type="submit">{{ __('Reset Password') }}</button>
-                </form>
+                </div>
             </div>
 
-            <!-- Login Meta -->
-            <div class="login-meta-data text-center">
-                <a class="stretched-link forgot-password d-block mt-3 mb-1"
-                    href="{{ route('admin.login') }}">{{ __('Log in') }}</a>
+            <div class="text-center mt-2">
+                <div>
+                    {{ __('Sudah punya akun ?') }}
+                </div>
+                <div>
+                    <a href="{{ route('admin.login') }}">{{ __('Log in disini') }}</a>
+                </div>
             </div>
-        </div>
+
+            <div class="form-button-group transparent">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">{{ __('Reset Password') }}</button>
+            </div>
+        </form>
     </div>
 @endsection

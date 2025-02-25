@@ -1,23 +1,20 @@
-<!-- Header Area -->
-<div class="header-area" id="headerArea">
-    <div class="container">
-        <!-- Header Content -->
-        <div
-            class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
-            <!-- Logo Wrapper -->
-            <div class="logo-wrapper">
-                <a href="home.html">
-                    <img src="{{ url(config('common.path_template') . 'img/core-img/logo.png') }}" alt="">
-                </a>
-            </div>
-
-            <!-- Navbar Toggler -->
-            <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas"
-                data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas">
-                <span class="d-block"></span>
-                <span class="d-block"></span>
-                <span class="d-block"></span>
-            </div>
-        </div>
+<!-- App Header -->
+<div class="appHeader bg-primary text-light">
+    <div class="left">
+        <a href="#" class="headerButton" data-bs-toggle="modal" data-bs-target="#sidebarPanel">
+            <ion-icon name="menu-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        <img src="{{ !empty(getLoggedUser()->image) ? url(config('common.path_storage') . getLoggedUser()->image) : url(config('common.path_template') . config('common.image_user_profile_small')) }}"
+            alt="image" class="imaged w20">
+        {{ $setting_system['site_title'] ?? config('app.name') }}
+    </div>
+    <div class="right">
+        <a href="app-notifications.html" class="headerButton">
+            <ion-icon class="icon" name="notifications-outline"></ion-icon>
+            <span class="badge badge-danger">4</span>
+        </a>
     </div>
 </div>
+<!-- * App Header -->

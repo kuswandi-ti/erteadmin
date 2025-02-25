@@ -1,41 +1,34 @@
-<!-- Footer Nav -->
-<div class="footer-nav-area" id="footerNav">
-    <div class="footer-nav position-relative footer-style-five shadow-sm">
-        <ul class="h-100 d-flex ps-0">
-            <li class="active">
-                <a href="home.html">
-                    <i class="bi bi-house"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="pages.html">
-                    <i class="bi bi-folder2-open"></i>
-                    <span>Pages</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="elements.html">
-                    <i class="bi bi-heart"></i>
-                    <span>Elements</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="chat-users.html">
-                    <i class="bi bi-chat-dots"></i>
-                    <span>Chat</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="settings.html">
-                    <i class="bi bi-gear"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+<!-- App Bottom Menu -->
+<div class="appBottomMenu">
+    <a href="index.html" class="item active">
+        <div class="col">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <strong>Overview</strong>
+        </div>
+    </a>
+    <a href="app-pages.html" class="item">
+        <div class="col">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <strong>Pages</strong>
+        </div>
+    </a>
+    <a href="app-components.html" class="item">
+        <div class="col">
+            <ion-icon name="apps-outline"></ion-icon>
+            <strong>Components</strong>
+        </div>
+    </a>
+    <a href="app-cards.html" class="item">
+        <div class="col">
+            <ion-icon name="card-outline"></ion-icon>
+            <strong>My Cards</strong>
+        </div>
+    </a>
+    <a href="app-settings.html" class="item">
+        <div class="col">
+            <ion-icon name="settings-outline"></ion-icon>
+            <strong>Settings</strong>
+        </div>
+    </a>
 </div>
+<!-- * App Bottom Menu -->

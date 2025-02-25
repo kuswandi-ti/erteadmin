@@ -1,2 +1,1 @@
-<!-- Web App Manifest -->
-<link rel="manifest" href="{{ url(config('common.path_template') . 'manifest.json') }}">
+<link rel="manifest" href="{{ url(config('common.path_template') . '__manifest.json') }}">

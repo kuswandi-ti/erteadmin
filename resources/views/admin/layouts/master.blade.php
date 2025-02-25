@@ -4,14 +4,15 @@
 <head>
     @include('layouts.partials._meta')
 
-    <title>{{ $setting_system['site_title'] ?? config('app.name') }} &mdash; @yield('page_title')</title>
+    <title>{{ $setting_system['site_title'] ?? config('app.name') }} &mdash; {{ __('Admin') }} &mdash;
+        @yield('page_title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('layouts.partials._favicon')
     @include('layouts.partials._styles')
 
-    @stack('style_vendor')
+    @stack('styles_vendor')
 
     @include('layouts.partials._manifest')
 </head>
@@ -20,13 +21,11 @@
 
     @include('layouts.partials._preloader')
 
-    @include('layouts.partials._header')
+    @yield('header')
 
     <!-- App Capsule -->
     <div id="appCapsule">
         @yield('content')
-
-        @include('layouts.partials._copyright')
     </div>
     <!-- * App Capsule -->
 
@@ -44,6 +43,21 @@
 
     <!-- Inline JS -->
     <script>
+        $(document).ready(function() {
+            const timeout = 300000; // 900000 ms = 15 minutes
+            var idleTimer = null;
+            $('*').bind(
+                'mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick',
+                function() {
+                    clearTimeout(idleTimer);
+
+                    idleTimer = setTimeout(function() {
+                        document.getElementById('form-logout').submit();
+                    }, timeout);
+                });
+            $("body").trigger("mousemove");
+        });
+
         $('body').on('click', '#logout', function(e) {
             e.preventDefault();
             $('#form-logout').submit();

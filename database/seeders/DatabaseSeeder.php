@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\AgamaTableSeeder;
+use Database\Seeders\PekerjaanTableSeeder;
 use Database\Seeders\FormatDateTableSeeder;
 use Database\Seeders\FormatTimeTableSeeder;
+use Database\Seeders\StatusRumahTableSeeder;
 use Database\Seeders\SettingSystemTableSeeder;
 use Database\Seeders\RolePermissionTableSeeder;
 use KodePandai\Indonesia\IndonesiaDatabaseSeeder;
@@ -22,5 +25,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(FormatDateTableSeeder::class);
         // $this->call(FormatTimeTableSeeder::class);
         // $this->call(IndonesiaDatabaseSeeder::class);
+        // $this->call(AgamaTableSeeder::class);
+        // $this->call(PekerjaanTableSeeder::class);
+        $this->call(StatusRumahTableSeeder::class);
     }
 }

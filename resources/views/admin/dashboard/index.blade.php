@@ -4,6 +4,10 @@
     {{ __('Dashboard') }}
 @endsection
 
+@section('header')
+    @include('layouts.partials._header')
+@endsection
+
 @section('content')
     <!-- Wallet Card -->
     <div class="section wallet-card-section pt-1">

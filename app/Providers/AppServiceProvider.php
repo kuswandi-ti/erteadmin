@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\SettingSystem;
+use App\Models\Admin\SettingSystem;
 use Illuminate\Pagination\Paginator;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\ServiceProvider;

@@ -6,6 +6,12 @@
             <strong>{{ __('Dashboard') }}</strong>
         </div>
     </a>
+    <a href="index.html" class="item">
+        <div class="col">
+            <ion-icon name="reader-outline"></ion-icon>
+            <strong>{{ __('Data') }}</strong>
+        </div>
+    </a>
     <a href="app-settings.html" class="item">
         <div class="col">
             <ion-icon name="settings-outline"></ion-icon>

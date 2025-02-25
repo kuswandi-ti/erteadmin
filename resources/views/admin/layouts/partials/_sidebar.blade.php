@@ -19,6 +19,19 @@
                 </div>
                 <!-- * profile box -->
 
+                <ul class="listview flush transparent no-line image-listview">
+                    <li>
+                        <a href="{{ route('admin.dashboard.index') }}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="tv-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Dashboard') }}
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
                 <!-- menu -->
                 <div class="listview-title mt-1">{{ __('Master Data') }}</div>
                 <ul class="listview flush transparent no-line image-listview">
@@ -32,7 +45,7 @@
                             </div>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="business-outline"></ion-icon>
@@ -71,14 +84,14 @@
                                 {{ __('Rumah') }}
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="bookmark-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                {{ __('Status Kepemilikan Rumah') }}
+                                {{ __('Status Rumah') }}
                             </div>
                         </a>
                     </li>
@@ -106,40 +119,37 @@
                 <!-- * menu -->
 
                 <!-- others -->
-                <div class="listview-title mt-1">Others</div>
+                <div class="listview-title mt-1">{{ __('User Manajemen') }}</div>
                 <ul class="listview flush transparent no-line image-listview">
+                    <li>
+                        <a href="{{ route('admin.permission.index') }}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Permission') }}
+                            </div>
+                        </a>
+                    </li>
                     <li>
                         <a href="app-settings.html" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="settings-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Settings
+                                {{ __('Role') }}
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="component-messages.html" class="item">
+                        <a href="app-settings.html" class="item">
                             <div class="icon-box bg-primary">
-                                <ion-icon name="chatbubble-outline"></ion-icon>
+                                <ion-icon name="settings-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Support
+                                {{ __('User') }}
                             </div>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" class="item logout" data-bs-toggle="modal" data-bs-target="#modal_logout">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="log-out-outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                {{ __('Logout') }}
-                            </div>
-                        </a>
-                        <form action="{{ route('admin.logout') }}" method="post" id="form-logout">
-                            @csrf
-                        </form>
                     </li>
                 </ul>
                 <!-- * others -->

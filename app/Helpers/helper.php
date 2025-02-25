@@ -31,6 +31,7 @@ function getArrayAdminPermission()
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_create', 'alias' => 'Membuat Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_delete', 'alias' => 'Hapus Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_index', 'alias' => 'Daftar Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_restore', 'alias' => 'Pulihkan Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_update', 'alias' => 'Perbarui Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_create', 'alias' => 'Membuat Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_delete', 'alias' => 'Hapus Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],

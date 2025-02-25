@@ -11,7 +11,7 @@
     @include('layouts.partials._favicon')
     @include('layouts.partials._styles')
 
-    @stack('style_vendor')
+    @stack('styles_vendor')
 
     @include('layouts.partials._manifest')
 </head>

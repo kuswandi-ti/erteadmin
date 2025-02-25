@@ -1,7 +1,7 @@
-@extends('layouts.auth')
+@extends('admin.layouts.auth')
 
 @section('page_title')
-    {{ __('Admin - Login') }}
+    {{ __('Login') }}
 @endsection
 
 @section('content')

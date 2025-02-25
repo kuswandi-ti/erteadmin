@@ -20,46 +20,85 @@
                 <!-- * profile box -->
 
                 <!-- menu -->
-                <div class="listview-title mt-1">Menu</div>
+                <div class="listview-title mt-1">{{ __('Master Data') }}</div>
                 <ul class="listview flush transparent no-line image-listview">
                     <li>
                         <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
-                                <ion-icon name="pie-chart-outline"></ion-icon>
+                                <ion-icon name="storefront-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Overview
-                                <span class="badge badge-primary">10</span>
+                                {{ __('Perumahan') }}
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="app-pages.html" class="item">
+                        <a href="index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="business-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Lingkungan') }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="grid-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Cluster / Jalan') }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="albums-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Blok') }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="home-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Rumah') }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="bookmark-outline"></ion-icon>
+                            </div>
+                            <div class="in">
+                                {{ __('Status Kepemilikan Rumah') }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="document-text-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Pages
+                                {{ __('Agama') }}
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="app-components.html" class="item">
+                        <a href="index.html" class="item">
                             <div class="icon-box bg-primary">
-                                <ion-icon name="apps-outline"></ion-icon>
+                                <ion-icon name="document-text-outline"></ion-icon>
                             </div>
                             <div class="in">
-                                Components
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="app-cards.html" class="item">
-                            <div class="icon-box bg-primary">
-                                <ion-icon name="card-outline"></ion-icon>
-                            </div>
-                            <div class="in">
-                                My Cards
+                                {{ __('Pekerjaan') }}
                             </div>
                         </a>
                     </li>
@@ -104,37 +143,6 @@
                     </li>
                 </ul>
                 <!-- * others -->
-
-                <!-- send money -->
-                <div class="listview-title mt-1">Send Money</div>
-                <ul class="listview image-listview flush transparent no-line">
-                    <li>
-                        <a href="#" class="item">
-                            <img src="assets/img/sample/avatar/avatar2.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Artem Sazonov</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="item">
-                            <img src="assets/img/sample/avatar/avatar4.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Sophie Asveld</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="item">
-                            <img src="assets/img/sample/avatar/avatar3.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Kobus van de Vegte</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- * send money -->
-
             </div>
         </div>
     </div>

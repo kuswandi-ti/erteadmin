@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 @section('page_title')
-    {{ __('Admin - Dashboard') }}
+    {{ __('Dashboard') }}
 @endsection
 
 @section('content')
@@ -11,13 +11,12 @@
             <!-- Balance -->
             <div class="balance">
                 <div class="left">
-                    <span class="title">Total Balance</span>
+                    <span class="title">{{ __('Total Uang Masuk') }}</span>
                     <h1 class="total">$ 2,562.50</h1>
                 </div>
                 <div class="right">
-                    <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#depositActionSheet">
-                        <ion-icon name="add-outline"></ion-icon>
-                    </a>
+                    <span class="title">{{ __('Total Uang Keluar') }}</span>
+                    <h1 class="total">$ 2,562.50</h1>
                 </div>
             </div>
             <!-- * Balance -->

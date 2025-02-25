@@ -1,7 +1,7 @@
-@extends('layouts.auth')
+@extends('admin.layouts.auth')
 
 @section('page_title')
-    {{ __('Admin - Lupa Password') }}
+    {{ __('Lupa Password') }}
 @endsection
 
 @section('content')

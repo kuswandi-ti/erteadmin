@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,10 @@ Route::get('/generate-storage-link', function () {
     echo 'ok';
 });
 
-Route::get('/', function () {
-    return "Halaman landing page";
-});
+// Route::get('/', function () {
+//     return "Halaman landing page";
+// });
+
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage.index');
 
 // require __DIR__ . '/auth.php';

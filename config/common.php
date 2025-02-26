@@ -4,17 +4,20 @@ return [
 
     'path_storage' => env('PATH_STORAGE'),
 
+    'path_template' => env('PATH_TEMPLATE'),
+    'path_template_web' => env('PATH_TEMPLATE_WEB'),
+    'path_template_mobile' => env('PATH_TEMPLATE_MOBILE'),
+
+    'url_global' => env('APP_URL_GLOBAL', 'localhost'),
     'central_domain' => env('APP_CENTRAL_DOMAIN', 'localhost'),
 
-    'logo_company_main' => env('LOGO_COMPANY_MAIN'),
-    'logo_company_desktop' => env('LOGO_COMPANY_DESKTOP'),
-    'logo_company_toggle' => env('LOGO_COMPANY_TOGGLE'),
-    'image_user_profile_small' => env('IMAGE_USER_PROFILE_SMALL'),
-    'image_user_profile_big' => env('IMAGE_USER_PROFILE_BIG'),
-    'image_product' => env('IMAGE_PRODUCT'),
-    'image_square_200x200' => env('IMAGE_SUARE_200x200'),
-
-    'path_template' => env('PATH_TEMPLATE'),
+    'image_default_logo_company_main' => env('IMAGE_DEFAULT_LOGO_COMPANY_MAIN'),
+    'image_default_logo_company_desktop' => env('IMAGE_DEFAULT_LOGO_COMPANY_DESKTOP'),
+    'image_default_logo_company_toggle' => env('IMAGE_DEFAULT_LOGO_COMPANY_TOGGLE'),
+    'image_default_user_profile_small' => env('IMAGE_DEFAULT_IMAGE_USER_PROFILE_SMALL'),
+    'image_default_user_profile_big' => env('IMAGE_DEFAULT_USER_PROFILE_BIG'),
+    'image_default_product' => env('IMAGE_DEFAULT_PRODUCT'),
+    'image_default_square_200x200' => env('IMAGE_DEFAULT_SUARE_200x200'),
 
     'guard_name_admin' => env('GUARD_NAME_ADMIN'),
     'guard_name_member' => env('GUARD_NAME_MEMBER'),

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AgamaTableSeeder;
 use Database\Seeders\PekerjaanTableSeeder;
+use Database\Seeders\PerumahanTableSeeder;
 use Database\Seeders\FormatDateTableSeeder;
 use Database\Seeders\FormatTimeTableSeeder;
 use Database\Seeders\StatusRumahTableSeeder;
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(IndonesiaDatabaseSeeder::class);
         // $this->call(AgamaTableSeeder::class);
         // $this->call(PekerjaanTableSeeder::class);
-        $this->call(StatusRumahTableSeeder::class);
+        // $this->call(StatusRumahTableSeeder::class);
+        $this->call(PerumahanTableSeeder::class);
     }
 }

@@ -11,22 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('perumahan', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->uuid('uuid');
+            $table->string('nama');
             $table->string('slug');
-            $table->string('email')->unique();
-            $table->string('domain');
-            $table->bigInteger('id_perumahan');
-            $table->string('rt');
-            $table->string('rw');
-            $table->string('cluster');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
-            $table->string('register_token')->nullable();
-            $table->text('image')->nullable();
-            $table->boolean('status_aktif')->default(1)->comment('1 = Aktif, 0 = Tidak Aktif');
-            $table->rememberToken();
+            $table->string('kode_provinsi')->nullable();
+            $table->string('kode_kabupatenkota')->nullable();
+            $table->string('kode_kecamatan')->nullable();
+            $table->string('kode_kelurahan')->nullable();
+            $table->string('kode_pos')->nullable();
+            $table->longText('alamat_lengkap')->nullable();
+            $table->boolean('status_aktif')->default(1)->comment('1 = Aktif, 0 = Non Aktif');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamp('restored_at')->nullable();
@@ -42,8 +38,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::table('users', function (Blueprint $table) {
+        Schema::dropIfExists('perumahan');
+        Schema::table('perumahan', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

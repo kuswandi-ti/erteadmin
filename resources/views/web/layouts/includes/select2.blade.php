@@ -1,6 +1,5 @@
 @push('styles_vendor')
-    <link rel="stylesheet"
-        href="{{ asset(config('common.path_template') . 'assets/libs/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset(config('common.path_template_web') . 'libs/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @push('styles')
@@ -12,7 +11,7 @@
 @endpush
 
 @push('scripts_vendor')
-    <script src="{{ asset(config('common.path_template') . 'assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset(config('common.path_template_web') . 'libs/select2/dist/js/select2.full.min.js') }}"></script>
 @endpush
 
 @push('scripts')

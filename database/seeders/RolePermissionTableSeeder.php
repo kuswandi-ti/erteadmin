@@ -20,14 +20,19 @@ class RolePermissionTableSeeder extends Seeder
         $default_user = 'System';
 
         $create_role_super_admin = 'Super Admin';
-        $create_role_admin = 'Admin';
+        $create_role_member_admin = 'Admin';
 
         /** Reset Cached Roles and Permissions */
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         /** Create Permission */
-        $permissions = getArrayAdminPermission();
-        foreach ($permissions as $permission) {
+        $permissions_admin = setAdminAdminPermission();
+        foreach ($permissions_admin as $permission) {
+            Permission::create($permission);
+        }
+
+        $permissions_member = setAdminMemberPermission();
+        foreach ($permissions_member as $permission) {
             Permission::create($permission);
         }
 
@@ -37,11 +42,10 @@ class RolePermissionTableSeeder extends Seeder
             'name' => $create_role_super_admin,
         ]);
 
-        $role_admin = Role::create([
-            'guard_name' => getGuardNameAdmin(),
-            'name' => $create_role_admin,
+        $role_member_admin = Role::create([
+            'guard_name' => getGuardNameMember(),
+            'name' => $create_role_member_admin,
         ]);
-        $role_admin->givePermissionTo(Permission::all());
 
         /** Create User */
         $user_super_admin = Admin::create([
@@ -58,22 +62,10 @@ class RolePermissionTableSeeder extends Seeder
             'created_by' => $default_user,
         ]);
 
-        $user_admin = Admin::create([
-            'name' => 'Admin',
-            'slug' => Str::slug('Admin'),
-            'email' => 'admin@mail.com',
-            'username' => Str::slug('Admin'),
-            'email_verified_at' => saveDateTimeNow(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'approved' => 1,
-            'approved_at' => saveDateTimeNow(),
-            'approved_by' => $default_user,
-            'remember_token' => Str::random(10),
-            'created_by' => $default_user,
-        ]);
-
-        /** Assign Role to Admin */
+        /** Assign Role */
         $user_super_admin->assignRole($role_super_admin);
-        // $user_admin->assignRole($role_admin);
+
+        /** Assign Permission to Role */
+        $role_member_admin->givePermissionTo(arrayAdminMemberPermission());
     }
 }

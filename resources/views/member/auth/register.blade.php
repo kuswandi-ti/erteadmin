@@ -1,4 +1,4 @@
-@extends('web.auth')
+@extends('layouts.member.auth')
 
 @section('page_title')
     {{ __('Register') }}
@@ -10,17 +10,12 @@
             <div class="container-lg">
                 <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
                     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
-                        {{-- <div class="my-5 d-flex justify-content-center">
-                            <a href="index.html">
-                                <img src="{{ !empty($setting_system['company_logo']) ? url(config('common.path_storage') . $setting_system['company_logo']) : url(config('common.path_template') . config('common.image_default_logo_company_main')) }}"
-                                    alt="logo" class="desktop-logo">
-                                <img src="{{ !empty($setting_system['company_logo']) ? url(config('common.path_storage') . $setting_system['company_logo']) : url(config('common.path_template') . config('common.image_default_logo_company_main')) }}"
-                                    alt="logo" class="desktop-dark">
-                            </a>
-                        </div> --}}
+                        <div class="my-5 d-flex justify-content-center">
+                            &nbsp;
+                        </div>
                         <div class="card custom-card rectangle2">
                             <div class="card-body p-sm-5 p-3 rectangle3">
-                                <p class="h4 fw-semibold mb-2 text-center">{{ __('Register') }}</p>
+                                <p class="h4 fw-semibold mb-4 text-center">{{ __('Register') }}</p>
                                 <p class="mb-4 text-muted op-7 fw-normal text-center">{{ __('Selamat datang') }} &amp;
                                     {{ __('bergabung bersama kami dengan akun gratis.') }}</p>
 
@@ -52,6 +47,27 @@
                                                 </div>
                                             @enderror
                                         </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-12 mt-3">
+                                            <label for="password" class="form-label text-default">{{ __('Password') }}
+                                                <x-all-not-null /></label>
+                                            <div class="input-group">
+                                                <input type="password"
+                                                    class="form-control  @error('password') is-invalid @enderror"
+                                                    name="password" id="signin-password" placeholder="{{ __('Password') }}"
+                                                    required>
+                                                <button class="btn btn-light bg-transparent" type="button"
+                                                    onclick="createpassword('signin-password',this)" id="button-addon2"><i
+                                                        class="ri-eye-off-line align-middle"></i></button>
+                                            </div>
+                                        </div>
+                                        @error('password')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="row">
@@ -146,6 +162,14 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <div class="text-center">
+                                    <p class="fs-12 text-muted">{{ __('Sudah punya akun ?') }}
+                                        {{ __('login') }}
+                                        <a href="{{ route('member.login') }}"
+                                            class="text-primary">{{ __('disini') }}</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,4 +179,4 @@
     </div>
 @endsection
 
-@include('web.layouts.includes.select2')
+@include('layouts.member.includes.select2')

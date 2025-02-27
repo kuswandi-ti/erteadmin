@@ -66,19 +66,19 @@ class User extends Authenticatable
         return $query->where('status_aktif', 0);
     }
 
-    public static function booted()
-    {
-        static::created(function ($user) {
-            $userTenant = Tenant::create([
-                'id' => $user->domain,
-                'id_perumahan' => $user->id_perumahan,
-                'rt' => $user->rt,
-                'rw' => $user->rw,
-                'cluster' => $user->cluster,
-            ]);
-            $userTenant->domains()->create([
-                'domain' => $user->domain . '.' . config('common.central_domain')
-            ]);
-        });
-    }
+    // public static function booted()
+    // {
+    //     static::created(function ($user) {
+    //         $userTenant = Tenant::create([
+    //             'id' => $user->domain,
+    //             'id_perumahan' => $user->id_perumahan,
+    //             'rt' => $user->rt,
+    //             'rw' => $user->rw,
+    //             'cluster' => $user->cluster,
+    //         ]);
+    //         $userTenant->domains()->create([
+    //             'domain' => $user->domain . '.' . config('common.central_domain')
+    //         ]);
+    //     });
+    // }
 }

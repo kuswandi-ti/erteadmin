@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Models\SettingSystem;
+use App\Models\Admin\SettingSystem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -25,13 +25,34 @@ function checkPermission(string $permission)
     return Auth::guard(getGuardNameLoggedUser())->user()->hasPermissionTo($permission);
 }
 
-function getArrayAdminPermission()
+function arrayAdminAdminPermission()
+{
+    return [
+        'role_create',
+        'role_delete',
+        'role_index',
+        'role_update',
+        'permission_create',
+        'permission_delete',
+        'permission_index',
+        'permission_update',
+        'user_approve',
+        'user_create',
+        'user_delete',
+        'user_index',
+        'user_reject',
+        'user_restore',
+        'user_update',
+        'setting_perusahaan',
+    ];
+}
+
+function setAdminAdminPermission()
 {
     return [
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_create', 'alias' => 'Membuat Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_delete', 'alias' => 'Hapus Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_index', 'alias' => 'Daftar Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
-        ['guard_name' => getGuardNameAdmin(), 'name' => 'role_restore', 'alias' => 'Pulihkan Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'role_update', 'alias' => 'Perbarui Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_create', 'alias' => 'Membuat Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'permission_delete', 'alias' => 'Hapus Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
@@ -45,6 +66,48 @@ function getArrayAdminPermission()
         ['guard_name' => getGuardNameAdmin(), 'name' => 'user_restore', 'alias' => 'Pulihkan User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'user_update', 'alias' => 'Perbarui User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
         ['guard_name' => getGuardNameAdmin(), 'name' => 'setting_perusahaan', 'alias' => 'Pengaturan Info Perusahaan', 'group_name' => 'Pengaturan', 'menu_name' => 'Pengaturan'],
+    ];
+}
+
+function arrayAdminMemberPermission()
+{
+    return [
+        'role_create',
+        'role_delete',
+        'role_index',
+        'role_update',
+        'permission_create',
+        'permission_delete',
+        'permission_index',
+        'permission_update',
+        'user_approve',
+        'user_create',
+        'user_delete',
+        'user_index',
+        'user_reject',
+        'user_restore',
+        'user_update',
+    ];
+}
+
+function setAdminMemberPermission()
+{
+    return [
+        ['guard_name' => getGuardNameMember(), 'name' => 'role_create', 'alias' => 'Membuat Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'role_delete', 'alias' => 'Hapus Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'role_index', 'alias' => 'Daftar Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'role_update', 'alias' => 'Perbarui Role', 'group_name' => 'Role Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'permission_create', 'alias' => 'Membuat Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'permission_delete', 'alias' => 'Hapus Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'permission_index', 'alias' => 'Daftar Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'permission_update', 'alias' => 'Perbarui Permission', 'group_name' => 'Permission Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_approve', 'alias' => 'Approve User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_create', 'alias' => 'Membuat User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_delete', 'alias' => 'Hapus User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_index', 'alias' => 'Daftar User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_reject', 'alias' => 'Tolak User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_restore', 'alias' => 'Pulihkan User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
+        ['guard_name' => getGuardNameMember(), 'name' => 'user_update', 'alias' => 'Perbarui User', 'group_name' => 'User Permission', 'menu_name' => 'User Management'],
     ];
 }
 // Role & Permission - End

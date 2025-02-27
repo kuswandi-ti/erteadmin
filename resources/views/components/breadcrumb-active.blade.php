@@ -1,1 +1,1 @@
-<li class="breadcrumb-item active text-dark" aria-current="page">{{ $title }}</li>
+<li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\FormatDate;
+use App\Models\Admin\FormatDate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

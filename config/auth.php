@@ -70,16 +70,16 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Tenant\User::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin\Admin::class,
         ],
-        // 'members' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Member::class,
-        // ],
+        'members' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Member\User::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
